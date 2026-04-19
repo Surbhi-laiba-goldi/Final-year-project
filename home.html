@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Learning Platform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background: #0f172a;
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .buttons button {
+      margin-left: 10px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .signin {
+      background: white;
+      color: #0f172a;
+    }
+
+    .signin:hover {
+      background: #e2e8f0;
+    }
+
+    .signup {
+      background: #22c55e;
+      color: white;
+    }
+
+    .signup:hover {
+      background: #16a34a;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 60px;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h2 {
+      font-size: 48px;
+      color: #0f172a;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #555;
+    }
+
+    .hero-text button {
+      padding: 14px 28px;
+      background: #0f172a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .hero-text button:hover {
+      background: #1e293b;
+    }
+
+    .hero img {
+      width: 420px;
+    }
+
+    section {
+      padding: 60px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #0f172a;
+    }
+
+    .feature-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      width: 260px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #22c55e;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 40px 60px;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .footer-container div {
+      max-width: 250px;
+    }
+
+    .footer-container h3,
+    .footer-container h4 {
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .footer-container p {
+      margin: 6px 0;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .footer-container p:hover {
+      color: #38bdf8;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #334155;
+      padding-top: 15px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI Spark</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="buttons">
+  <button class="signin" onclick="location.href='signin.html'">Sign In</button>
+  <button class="signup" onclick="location.href='signup.html'">Sign Up</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Personalized Learning with AI</h2>
+      <p>Upgrade your skills with intelligent AI-driven learning paths tailored for you.</p>
+      <button>Get Started</button>
+    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="AI Learning">
+  </section>
+
+  <section>
+    <h2>Our Features</h2>
+    <div class="feature-box">
+      <div class="card">
+        <h3>Smart Recommendations</h3>
+        <p>AI suggests courses based on your interests.</p>
+      </div>
+      <div class="card">
+        <h3>Track Progress</h3>
+        <p>Monitor your learning journey in real-time.</p>
+      </div>
+      <div class="card">
+        <h3>Interactive Learning</h3>
+        <p>Engage with quizzes and hands-on exercises.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>AI Courses</h2>
+    <div class="feature-box">
+      <div class="card">
+        <h3>Machine Learning</h3>
+        <p>Build predictive models using data.</p>
+      </div>
+      <div class="card">
+        <h3>Deep Learning</h3>
+        <p>Master neural networks and AI systems.</p>
+      </div>
+      <div class="card">
+        <h3>Natural Language Processing</h3>
+        <p>Understand and process human language.</p>
+      </div>
+      <div class="card">
+        <h3>AI for Beginners</h3>
+        <p>Start your journey into AI fundamentals.</p>
+      </div>
+      <div class="card">
+        <h3>Data Science</h3>
+        <p>Analyze and visualize data effectively.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>AI Learn</h3>
+        <p>Your smart AI-powered learning partner.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p>Home</p>
+        <p>Courses</p>
+        <p>About</p>
+        <p>Contact</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@ailearn.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <p>Facebook</p>
+        <p>Instagram</p>
+        <p>LinkedIn</p>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2026 AI Learn Platform | All Rights Reserved</p>
+    </div>
+  </footer>
+
+</body>
+</html>
