@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - AI Spark</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: #0f172a;
+  color: white;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav a {
+  color: #e2e8f0;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+.buttons a {
+  margin-left: 10px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin {
+  background: white;
+  color: #0f172a;
+}
+
+.signup {
+  background: #22c55e;
+  color: white;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #cbd5f5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Sections */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #0f172a;
+  margin-bottom: 40px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #22c55e;
+  margin: 12px auto 0;
+}
+
+/* Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(34,197,94,0.2);
+}
+
+.card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  color: #22c55e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Team */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.team-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.team-card h3 {
+  margin-top: 15px;
+  color: #0f172a;
+}
+
+.team-card .role {
+  color: #22c55e;
+  font-size: 0.85rem;
+  margin: 5px 0 15px;
+}
+
+/* Stats */
+.stats {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* CTA */
+.cta {
+  background: #22c55e;
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.cta h2 {
+  margin-bottom: 15px;
+}
+
+.cta button {
+  background: white;
+  color: #22c55e;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Footer */
+footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 40px 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-container div {
+  max-width: 250px;
+}
+
+.footer-container h4 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.footer-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.copyright {
+  text-align: center;
+  border-top: 1px solid #334155;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  header, footer {
+    padding: 15px 20px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .container {
+    padding: 40px 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AI Spark</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="buttons">
+    <a href="signin.html" class="signin">Sign In</a>
+    <a href="signup.html" class="signup">Sign Up</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>About AI Spark</h1>
+  <p>Empowering learners with AI-powered education to build future-ready skills</p>
+</div>
+
+<!-- Mission -->
+<div class="container">
+  <h2 class="section-title">Our Mission</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Personalized Learning</h3>
+      <p>AI-driven learning paths tailored to your goals and pace.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌍</div>
+      <h3>Accessible Education</h3>
+      <p>Quality AI education for everyone, everywhere.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Future Skills</h3>
+      <p>Building skills that matter for tomorrow's technology.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stats-grid">
+    <div><div class="stat-number">50K+</div><div>Learners</div></div>
+    <div><div class="stat-number">200+</div><div>Courses</div></div>
+    <div><div class="stat-number">98%</div><div>Satisfaction</div></div>
+    <div><div class="stat-number">40+</div><div>Partners</div></div>
+  </div>
+</div>
+
+<!-- Why Choose Us -->
+<div class="container">
+  <h2 class="section-title">Why Choose Us</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🤖</div>
+      <h3>AI Recommendations</h3>
+      <p>Smart course suggestions based on your learning style.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Interactive Learning</h3>
+      <p>Quizzes, projects, and hands-on practice.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎓</div>
+      <h3>Certification</h3>
+      <p>Industry-recognized certificates upon completion.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Team -->
+<div class="container">
+  <h2 class="section-title">Our Team</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team">
+      <h3>Dr. Sarah Chen</h3>
+      <div class="role">CEO & Founder</div>
+    </div>
+    <div class="team-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team">
+      <h3>Michael Rodriguez</h3>
+      <div class="role">Chief Learning Officer</div>
+    </div>
+    <div class="team-card">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Team">
+      <h3>Dr. Emily Watson</h3>
+      <div class="role">Head of AI Research</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Ready to start learning?</h2>
+  <p>Join thousands of learners building their AI careers with AI Spark</p>
+  <button onclick="location.href='courses.html'">Explore Courses →</button>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <h4>AI Spark</h4>
+      <p>Your AI-powered learning partner</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p>Home</p>
+      <p>Courses</p>
+      <p>About</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>support@ailearn.com</p>
+      <p>+91 9876543210</p>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>© 2026 AI Spark | All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>

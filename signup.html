@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - AI Spark</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sign Up Card */
+.signup-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-radius: 28px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  padding: 45px 40px;
+  width: 100%;
+  max-width: 440px;
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.signup-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-area h1 {
+  color: #0f172a;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.logo-area p {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: 0.2s;
+  background: #ffffff;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.checkbox-group input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  cursor: pointer;
+}
+
+.checkbox-group a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+  text-decoration: underline;
+}
+
+.signup-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102,126,234,0.4);
+}
+
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.divider span {
+  background: white;
+  padding: 0 15px;
+  position: relative;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.social-login {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.social-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  border-color: #667eea;
+}
+
+.signin-link {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.signin-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: none;
+}
+
+.password-strength {
+  margin-top: 5px;
+  font-size: 0.7rem;
+}
+
+.strength-weak { color: #dc2626; }
+.strength-medium { color: #f59e0b; }
+.strength-strong { color: #10b981; }
+
+@media (max-width: 480px) {
+  .signup-card {
+    padding: 30px 25px;
+  }
+  .logo-area h1 {
+    font-size: 1.6rem;
+  }
+  .name-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="signup-card">
+  <div class="logo-area">
+    <h1>✨ AI Spark</h1>
+    <p>Create your account to start learning AI</p>
+  </div>
+
+  <div id="errorMsg" class="error-message"></div>
+
+  <form id="signupForm">
+    <div class="name-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="John" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="Doe" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>📧 Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
+    </div>
+
+    <div class="form-group">
+      <label>🔒 Password</label>
+      <input type="password" id="password" placeholder="Create a password" required>
+      <div id="strengthText" class="password-strength"></div>
+    </div>
+
+    <div class="form-group">
+      <label>✓ Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+    </div>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="terms" required>
+      <label>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+    </div>
+
+    <button type="submit" class="signup-btn">Create Account →</button>
+  </form>
+
+  <div class="divider">
+    <span>or sign up with</span>
+  </div>
+
+  <div class="social-login">
+    <button class="social-btn" onclick="alert('Google Sign Up')">G</button>
+    <button class="social-btn" onclick="alert('Facebook Sign Up')">f</button>
+    <button class="social-btn" onclick="alert('Apple Sign Up')">🍎</button>
+  </div>
+
+  <div class="signin-link">
+    Already have an account? <a href="signin.html">Sign In</a>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('signupForm');
+  const errorMsg = document.getElementById('errorMsg');
+  const passwordInput = document.getElementById('password');
+  const confirmInput = document.getElementById('confirmPassword');
+  const strengthText = document.getElementById('strengthText');
+
+  // Password strength checker
+  function checkStrength(password) {
+    let strength = 0;
+    if (password.length >= 6) strength++;
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+    
+    if (password.length === 0) return '';
+    if (strength <= 2) return '<span class="strength-weak">⚠️ Weak password</span>';
+    if (strength <= 4) return '<span class="strength-medium">⚡ Medium password</span>';
+    return '<span class="strength-strong">✅ Strong password</span>';
+  }
+
+  passwordInput.addEventListener('input', function() {
+    strengthText.innerHTML = checkStrength(this.value);
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    const terms = document.getElementById('terms').checked;
+    
+    // Validation
+    if(!firstName || !lastName || !email || !password || !confirm) {
+      errorMsg.textContent = '❌ Please fill in all fields';
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    if(!email.includes('@') || !email.includes('.')) {
+      errorMsg.textContent = '❌ Please enter a valid email address';
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    if(password.length < 6) {
+      errorMsg.textContent = '❌ Password must be at least 6 characters';
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    if(password !== confirm) {
+      errorMsg.textContent = '❌ Passwords do not match';
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    if(!terms) {
+      errorMsg.textContent = '❌ Please agree to the Terms of Service';
+      errorMsg.style.display = 'block';
+      return;
+    }
+    
+    errorMsg.style.display = 'none';
+    alert('✅ Account created successfully! Welcome to AI Spark.');
+    form.reset();
+    strengthText.innerHTML = '';
+  });
+  
+  // Clear error on input
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => {
+      errorMsg.style.display = 'none';
+    });
+  });
+</script>
+
+</body>
+</html>
