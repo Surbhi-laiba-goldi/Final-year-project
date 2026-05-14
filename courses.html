@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Spark - Professional Course Platform</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: #0f172a;
+  color: white;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav a {
+  color: #e2e8f0;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+.buttons a {
+  margin-left: 10px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.signin {
+  background: white;
+  color: #0f172a;
+}
+.signin:hover {
+  background-color: rgba(228, 228, 228, 0.877);
+}
+
+.signup {
+  background: #22c55e;
+  color: white;
+}
+.signup:hover {
+  background: #16a34a;
+}
+
+/* Container */
+.container {
+  padding: 40px 60px;
+  flex: 1;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+/* Courses Grid */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card h3 {
+  color: #22c55e;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.course-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.course-btn:hover {
+  background: #22c55e;
+}
+
+/* COURSE DETAIL PAGE - Professional Layout (Description First, then Video, then Quiz) */
+.course-page {
+  background: linear-gradient(135deg, #f4f7fb 0%, #e8edf5 100%);
+  min-height: 100vh;
+  padding: 0;
+}
+
+.course-page-header {
+  background: #0f172a;
+  color: white;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.back-home {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-home:hover {
+  background: #16a34a;
+  transform: scale(1.02);
+}
+
+.course-page-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 30px;
+}
+
+/* Description Section - First & Prominent */
+.description-section {
+  background: white;
+  border-radius: 28px;
+  padding: 40px;
+  margin-bottom: 35px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-left: 6px solid #22c55e;
+}
+
+.description-section h1 {
+  color: #0f172a;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.course-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #22c55e20, #16a34a20);
+  color: #16a34a;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.description-section p {
+  color: #334155;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.description-section h3 {
+  color: #0f172a;
+  margin: 25px 0 15px 0;
+  font-size: 1.4rem;
+}
+
+.description-section ul {
+  margin: 15px 0 20px 30px;
+  color: #334155;
+  line-height: 1.8;
+}
+
+.description-section li {
+  margin: 10px 0;
+}
+
+/* Video Section - Second (1 Hour Long Lecture Style) */
+.video-section {
+  background: white;
+  border-radius: 28px;
+  padding: 30px;
+  margin-bottom: 35px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.video-section h2 {
+  color: #0f172a;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.video-wrapper {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-duration {
+  display: inline-block;
+  background: #0f172a;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  margin-top: 12px;
+}
+
+/* Quiz Section - Third */
+.quiz-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  border-radius: 28px;
+  padding: 35px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.quiz-section h2 {
+  color: #0f172a;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.start-quiz-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(34,197,94,0.3);
+}
+
+.start-quiz-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(34,197,94,0.4);
+}
+
+.quiz-questions {
+  display: none;
+  margin-top: 20px;
+}
+
+.quiz-question-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.quiz-question-card p {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.quiz-option {
+  display: block;
+  margin: 10px 0;
+  padding: 12px 22px;
+  background: #f1f5f9;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.quiz-option:hover {
+  background: #cbd5e1;
+  transform: translateX(8px);
+}
+
+.quiz-option.selected {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border-color: #16a34a;
+}
+
+.submit-quiz {
+  background: #0f172a;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 25px;
+  width: 100%;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.submit-quiz:hover {
+  background: #22c55e;
+  transform: scale(1.01);
+}
+
+.quiz-result {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 20px;
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  border-radius: 28px;
+  color: #166534;
+}
+
+/* Footer */
+footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 40px 60px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-container div {
+  max-width: 250px;
+}
+
+.footer-container h3, .footer-container h4 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.copyright {
+  text-align: center;
+  border-top: 1px solid #334155;
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  header, .container, footer {
+    padding: 20px;
+  }
+  .courses {
+    grid-template-columns: 1fr;
+  }
+  .course-page-header {
+    padding: 15px 20px;
+  }
+  .course-page-container {
+    padding: 0 15px;
+  }
+  .description-section h1 {
+    font-size: 1.5rem;
+  }
+  .description-section p {
+    font-size: 0.95rem;
+  }
+}
+</style>
+</head>
+<body id="appBody">
+
+<!-- Header -->
+<header id="mainHeader">
+  <h1>AI Spark</h1>
+  <nav>
+    <a href="home.html" id="homeLink">Home</a>
+    <a href="courses.html" id="coursesLink">Courses</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="buttons">
+    <a href="signin.html" class="signin">Sign In</a>
+    <a href="signup.html" class="signup">Sign Up</a>
+  </div>
+</header>
+
+<!-- Dynamic Content Container -->
+<div id="mainContent"></div>
+
+<footer id="mainFooter">
+  <div class="footer-container">
+    <div><h3>AI Spark</h3><p>Your smart AI-powered learning partner.</p></div>
+    <div><h4>Quick Links</h4><p>Home</p><p>Courses</p><p>About</p><p>Contact</p></div>
+    <div><h4>Contact</h4><p>Email: support@ailearn.com</p><p>Phone: +91 9876543210</p></div>
+    <div><h4>Follow Us</h4><p>Facebook</p><p>Instagram</p><p>LinkedIn</p></div>
+  </div>
+  <div class="copyright"><p>© 2026 AI Spark | All Rights Reserved</p></div>
+</footer>
+
+<script>
+// ======================== 16 COURSES DATA with COMPREHENSIVE DESCRIPTIONS ========================
+function getLongDescription(courseTitle) {
+  const descriptions = {
+    "Machine Learning": "Machine Learning (ML) is a transformative field of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. This comprehensive course covers both theoretical foundations and practical applications. You'll start with supervised learning algorithms including linear regression, logistic regression, decision trees, random forests, and support vector machines. The course then explores unsupervised learning techniques such as K-means clustering, hierarchical clustering, and principal component analysis (PCA). You'll master essential concepts like bias-variance tradeoff, cross-validation, regularization (L1 and L2), feature engineering, and model evaluation metrics including accuracy, precision, recall, F1-score, ROC curves, and AUC. Hands-on projects include building a house price prediction system, customer segmentation for e-commerce, spam email classifier, and credit risk assessment model. You'll work with real-world datasets from Kaggle and UCI Machine Learning Repository. The course also covers ensemble methods (bagging, boosting, stacking), hyperparameter tuning using GridSearchCV and RandomizedSearchCV, and deployment of ML models using Flask and Docker. By the end, you'll be able to build, evaluate, and deploy production-ready machine learning systems. This is a complete masterclass designed for aspiring data scientists and ML engineers.",
+    "Deep Learning": "Deep Learning revolutionizes AI through neural networks with multiple layers. This advanced course takes you from fundamentals to state-of-the-art architectures. You'll learn artificial neurons, activation functions (ReLU, Sigmoid, Tanh, Softmax), forward and backward propagation, optimization algorithms (SGD, Adam, RMSprop), and loss functions. The course covers Convolutional Neural Networks (CNNs) for computer vision tasks including image classification, object detection (YOLO, R-CNN), and semantic segmentation. You'll master Recurrent Neural Networks (RNNs) and LSTMs for sequence data like time series, text, and audio. The curriculum includes transformers and attention mechanisms that power modern LLMs like GPT and BERT. You'll build projects including an image classifier using CIFAR-10, a sentiment analysis model for movie reviews, a neural machine translation system, and a generative adversarial network (GAN) for creating synthetic images. Using TensorFlow 2.x and PyTorch, you'll implement transfer learning with pre-trained models like ResNet, VGG, and BERT. Advanced topics include batch normalization, dropout for regularization, learning rate scheduling, and deploying deep learning models on cloud platforms. This course prepares you for cutting-edge AI research and industry applications. Perfect for those wanting to become deep learning specialists.",
+    "Data Science": "Data Science is the art of extracting insights from data. This comprehensive course covers the entire data science lifecycle from data collection to actionable insights. You'll master Python for data analysis using NumPy for numerical computing and pandas for data manipulation including DataFrames, Series, handling missing values, merging, grouping, and pivot tables. Data visualization is taught using Matplotlib, Seaborn, and Plotly for creating compelling charts, heatmaps, pair plots, and interactive dashboards. Statistical foundations include probability distributions, hypothesis testing, confidence intervals, A/B testing, and Bayesian inference. You'll learn exploratory data analysis (EDA) techniques to uncover patterns, anomalies, and relationships. The course covers feature engineering, feature selection, and dimensionality reduction. You'll work with SQL for database querying and big data tools like Spark for large-scale processing. Real-world projects include analyzing e-commerce sales data, building a recommendation system, performing customer churn prediction, and creating interactive dashboards with Tableau and Power BI. You'll also learn data storytelling techniques to communicate findings effectively to stakeholders. By the end, you'll be a well-rounded data scientist capable of turning raw data into business value.",
+    "AI Fundamentals": "Artificial Intelligence Fundamentals provides a solid foundation in core AI concepts and techniques. This course covers intelligent agents and their environments, problem-solving through search algorithms including uninformed search (BFS, DFS, UCS) and informed search (A*, Greedy BFS, heuristic functions). You'll learn constraint satisfaction problems (CSPs), game playing with minimax algorithm and alpha-beta pruning. The course explores knowledge representation using logic, first-order predicate logic, inference rules, and expert systems. Uncertainty handling covers probability theory, Bayesian networks, and inference. You'll study planning algorithms, Markov Decision Processes (MDPs), and basic reinforcement learning concepts. The philosophical and ethical aspects of AI are discussed including Turing test, Chinese room argument, and AI safety. Historical perspectives cover the evolution from symbolic AI to modern machine learning. Applications include building a simple chatbot, implementing a puzzle solver (8-puzzle), creating a recommendation engine using collaborative filtering, and developing a rule-based expert system for medical diagnosis. This course is perfect for beginners wanting to understand the breadth and depth of artificial intelligence before specializing.",
+    "NLP": "Natural Language Processing (NLP) bridges human communication and computers. This course covers text preprocessing including tokenization, stemming, lemmatization, stopword removal, and part-of-speech tagging. You'll learn classical NLP techniques like bag-of-words, TF-IDF, n-grams, and word embeddings (Word2Vec, GloVe, FastText). The course covers text classification using Naive Bayes, logistic regression, and SVMs, as well as sentiment analysis for social media monitoring. Advanced topics include sequence labeling with Hidden Markov Models (HMMs) and Conditional Random Fields (CRFs) for named entity recognition (NER) and part-of-speech tagging. You'll master modern transformer-based models including BERT, RoBERTa, DistilBERT, and GPT for tasks like text summarization, machine translation, question answering, and text generation. Using Hugging Face Transformers library, you'll fine-tune pre-trained models on custom datasets. Applications include building a spam detector, sentiment analyzer for product reviews, named entity extraction from news articles, a language translation system, and a chatbot using RAG (Retrieval-Augmented Generation). By course end, you can build production-grade NLP systems.",
+    "Computer Vision": "Computer Vision enables machines to understand visual world. This comprehensive course covers digital image processing fundamentals including filtering, edge detection (Sobel, Canny), morphological operations, color spaces, and feature extraction (SIFT, SURF, ORB, HOG). You'll learn classical computer vision techniques like image segmentation (thresholding, watershed, graph cuts), object detection using Haar cascades and HOG+SVM, and image stitching for panoramas. The course extensively covers deep learning for vision focusing on Convolutional Neural Networks (CNNs) architectures like LeNet, AlexNet, VGG, ResNet, Inception, and MobileNet. You'll master object detection frameworks including YOLO (You Only Look Once), SSD (Single Shot Detector), and Faster R-CNN. The curriculum includes semantic segmentation (U-Net, Mask R-CNN), instance segmentation, pose estimation, and face recognition (FaceNet, ArcFace). Using OpenCV, TensorFlow, and PyTorch, you'll build projects including real-time face detection, object tracking in videos, handwritten digit recognition, emotion detection from facial expressions, and autonomous lane detection for self-driving cars. You'll be equipped for roles in autonomous vehicles, security systems, and medical imaging."
+  };
+  if (descriptions[courseTitle]) return descriptions[courseTitle];
+  return `${courseTitle} represents a cutting-edge area of artificial intelligence with vast applications across industries. This intensive course provides comprehensive coverage from foundational concepts to advanced techniques. The curriculum is designed by industry experts and academic leaders, ensuring you gain practical, job-ready skills. You'll work on real-world projects, collaborate with peers, and receive personalized feedback. Topics include core algorithms, data processing, model evaluation, deployment strategies, and ethical considerations. Through hands-on coding exercises and case studies, you'll build a portfolio demonstrating your expertise. Prerequisites include basic programming knowledge, though we provide refresher modules. The course includes lifetime access to materials, community forums, and regular live sessions with instructors. Completion certificate recognized by leading tech companies. By finishing this course, you'll be prepared for roles as an AI specialist, machine learning engineer, or data scientist.`;
+}
+
+// 16 Courses Data
+const coursesData = [
+  { id: 0, title: "Machine Learning", shortDesc: "Build predictive models with Python.", img: "https://flatironschool.com/wp-content/uploads/2023/03/Resized-blog-thumbnail-50.jpg", videoId: "ukzFI9rgwfU", quiz: [
+    { question: "What is overfitting in ML?", options: ["Model too complex & memorizes noise", "Model too simple", "Data too large", "None of these"], correct: 0 },
+    { question: "Which algorithm is used for classification?", options: ["Linear Regression", "Decision Tree", "K-Means", "PCA"], correct: 1 },
+    { question: "What does 'training' refer to?", options: ["Learning patterns from data", "Testing data", "Cleaning data", "Visualization"], correct: 0 },
+    { question: "What is cross-validation used for?", options: ["Model evaluation", "Data cleaning", "Feature extraction", "Visualization"], correct: 0 },
+    { question: "Which metric is for regression?", options: ["Accuracy", "Precision", "Mean Squared Error", "F1 Score"], correct: 2 }
+  ] },
+  { id: 1, title: "Deep Learning", shortDesc: "Neural networks & AI.", img: "https://home.sophos.com/sites/default/files/2021-09/ai-article-pic8.jpeg", videoId: "aircAruvnKk", quiz: [
+    { question: "What is a neuron in deep learning?", options: ["Activation unit", "Data sample", "Loss function", "Optimizer"], correct: 0 },
+    { question: "Which activation is used for binary classification output?", options: ["ReLU", "Sigmoid", "Tanh", "Softmax"], correct: 1 },
+    { question: "Vanishing gradient affects which networks?", options: ["Shallow nets", "Deep nets", "Linear models", "Trees"], correct: 1 },
+    { question: "What does CNN stand for?", options: ["Convolutional Neural Network", "Central Network", "Complex Net", "Core Net"], correct: 0 },
+    { question: "Which layer reduces spatial dimensions?", options: ["Pooling", "Dense", "Dropout", "Input"], correct: 0 }
+  ] },
+  { id: 2, title: "Data Science", shortDesc: "Analyze & visualize data.", img: "https://www.naukri.com/campus/career-guidance/wp-content/uploads/2023/11/what-is-data-science.jpg", videoId: "ua-CiDNNj30", quiz: [
+    { question: "Pandas is used for?", options: ["Data manipulation", "Deep learning", "Web dev", "Gaming"], correct: 0 },
+    { question: "Which library creates plots?", options: ["NumPy", "Matplotlib", "Scikit-learn", "TensorFlow"], correct: 1 },
+    { question: "What is a DataFrame?", options: ["2D labeled data", "Image matrix", "Audio signal", "Model"], correct: 0 },
+    { question: "Which statistical measure is the average?", options: ["Median", "Mean", "Mode", "Variance"], correct: 1 },
+    { question: "What is a box plot used for?", options: ["Outlier detection", "Classification", "Regression", "Clustering"], correct: 0 }
+  ] },
+  { id: 3, title: "AI Fundamentals", shortDesc: "Core AI concepts.", img: "https://imageio.forbes.com/specials-images/imageserve/6525309f7711ac3279175aa1/0x0.jpg?format=jpg&crop=2731,1535,x0,y0,safe&height=900&width=1600&fit=bounds", videoId: "5NgNicANyqM", quiz: [
+    { question: "Turing test measures?", options: ["Intelligence", "Speed", "Memory", "Accuracy"], correct: 0 },
+    { question: "Which search uses heuristic?", options: ["BFS", "A*", "DFS", "UCS"], correct: 1 },
+    { question: "Agent perceives via?", options: ["Sensors", "Actuators", "Memory", "CPU"], correct: 0 },
+    { question: "What is a rational agent?", options: ["Maximizes goal achievement", "Fastest agent", "Cheapest agent", "Random agent"], correct: 0 },
+    { question: "Which algorithm guarantees optimality?", options: ["A* with admissible heuristic", "Greedy BFS", "Hill climbing", "Random search"], correct: 0 }
+  ] },
+  { id: 4, title: "NLP", shortDesc: "Language processing.", img: "https://online.york.ac.uk/media/mageplaza/blog/post/h/u/human-touching-a-graphic-nlp.png", videoId: "CMrHM8a3hqw", quiz: [
+    { question: "Which library is for NLP in Python?", options: ["NLTK", "OpenCV", "Keras", "PyGame"], correct: 0 },
+    { question: "Bag-of-Words represents?", options: ["Word frequency", "Grammar", "Syntax Trees", "Word embeddings"], correct: 0 },
+    { question: "What does tokenization do?", options: ["Split text into tokens", "Classify text", "Generate text", "Translate"], correct: 0 },
+    { question: "What is BERT?", options: ["Transformer model", "CNN model", "RNN model", "Clustering algorithm"], correct: 0 },
+    { question: "Which task uses named entity recognition?", options: ["Extracting names/dates", "Translation", "Summarization", "Speech recognition"], correct: 0 }
+  ] },
+  { id: 5, title: "Computer Vision", shortDesc: "Image recognition.", img: "https://www.rishabhsoft.com/wp-content/uploads/2023/04/Blog-Banner-Computer-Vision.jpg", videoId: "OcycT1uClqQ", quiz: [
+    { question: "Which library is used for computer vision?", options: ["OpenCV", "Django", "Flask", "Scrapy"], correct: 0 },
+    { question: "CNN stands for?", options: ["Convolutional Neural Network", "Central Network", "Complex Net", "Core Net"], correct: 0 },
+    { question: "What is a kernel in CNN?", options: ["Filter", "Pooling", "Activation", "Loss"], correct: 0 },
+    { question: "What is YOLO used for?", options: ["Object detection", "Text generation", "Speech recognition", "Clustering"], correct: 0 },
+    { question: "Which operation reduces noise?", options: ["Gaussian blur", "Edge detection", "Contouring", "Thresholding"], correct: 0 }
+  ] },
+  { id: 6, title: "Robotics", shortDesc: "AI robots & ROS.", img: "https://ik.imagekit.io/edtechdigit/usdsi/content/images/articles/impact-of-data-science-in-robotics-2.jpg", videoId: "W0RkOEpWr_I", quiz: [
+    { question: "ROS stands for?", options: ["Robot Operating System", "Remote OS", "Real-time OS", "Robotic Software"], correct: 0 },
+    { question: "What is a PID controller?", options: ["Feedback loop", "Neural net", "Classifier", "Regressor"], correct: 0 },
+    { question: "SLAM means?", options: ["Simultaneous Localization and Mapping", "Simple Learning", "Sensor Logic", "System Loop"], correct: 0 },
+    { question: "What is an actuator?", options: ["Moves robot parts", "Senses environment", "Processes data", "Stores memory"], correct: 0 },
+    { question: "Which sensor helps avoid obstacles?", options: ["Ultrasonic", "Temperature", "Pressure", "Humidity"], correct: 0 }
+  ] },
+  { id: 7, title: "Python for AI", shortDesc: "Programming basics.", img: "https://quantumzeitgeist.com/wp-content/uploads/pythonai.jpeg", videoId: "_uQrJ0TkZlc", quiz: [
+    { question: "Which keyword defines a function?", options: ["def", "func", "define", "lambda"], correct: 0 },
+    { question: "What is the correct file extension for Python?", options: [".py", ".pyth", ".pt", ".p"], correct: 0 },
+    { question: "Which library is for arrays?", options: ["NumPy", "Pandas", "Matplotlib", "SciPy"], correct: 0 },
+    { question: "What does pip stand for?", options: ["Package installer", "Python integrator", "Pipeline", "Processor"], correct: 0 },
+    { question: "Which data type is immutable?", options: ["Tuple", "List", "Dictionary", "Set"], correct: 0 }
+  ] },
+  { id: 8, title: "Big Data", shortDesc: "Large datasets.", img: "https://assets.everspringpartners.com/dims4/default/e8dae50/2147483647/strip/true/crop/476x250+72+0/resize/1200x630!/quality/90/?url=http%3A%2F%2Feverspring-brightspot.s3.us-east-1.amazonaws.com%2Ff4%2Ff4%2F2c832e904c19ab27a222cbee0206%2Fadobestock-276394533-620x250.jpg", videoId: "HjQ_HYmzU_M", quiz: [
+    { question: "Which is Big Data tool?", options: ["Apache Spark", "Django", "Flask", "React"], correct: 0 },
+    { question: "What is HDFS?", options: ["Hadoop File System", "High Data File", "Hyper Data Format", "Hybrid Storage"], correct: 0 },
+    { question: "MapReduce is for?", options: ["Parallel processing", "Data viz", "ML models", "Web"], correct: 0 },
+    { question: "What does 'Volume' refer to in Big Data?", options: ["Amount of data", "Speed of data", "Variety of data", "Veracity"], correct: 0 },
+    { question: "Which is NoSQL database?", options: ["MongoDB", "MySQL", "PostgreSQL", "SQLite"], correct: 0 }
+  ] },
+  { id: 9, title: "AI Ethics", shortDesc: "Responsible AI.", img: "https://media.istockphoto.com/id/1449569562/photo/ai-ethics-or-ai-law-concept-developing-ai-codes-of-ethics-compliance-regulation-standard.jpg?s=612x612&w=0&k=20&c=emPz7ADSNj8gkN3wyiDXVmPiF2p0WyuWnYqlOMdwQB0=", videoId: "jGQShi6h3ow", quiz: [
+    { question: "What is algorithmic bias?", options: ["Unfair outcomes", "Fast computation", "Low accuracy", "High cost"], correct: 0 },
+    { question: "Explainability in AI means?", options: ["Understand decisions", "Speed", "Less data", "More layers"], correct: 0 },
+    { question: "Which principle ensures fairness?", options: ["Non-discrimination", "Profit", "Scalability", "Complexity"], correct: 0 },
+    { question: "What is data privacy concern?", options: ["Personal data misuse", "Slow training", "Model accuracy", "Cost"], correct: 0 },
+    { question: "What does 'transparency' mean?", options: ["Open about model workings", "Fast inference", "High accuracy", "Low memory"], correct: 0 }
+  ] },
+  { id: 10, title: "Reinforcement Learning", shortDesc: "Reward-based AI.", img: "https://cdn.hashnode.com/res/hashnode/image/upload/v1685366006150/abbf0272-c45c-4a4a-b7b0-3f5c255c47ff.jpeg", videoId: "JgvyzIkgxF0", quiz: [
+    { question: "In RL, agent learns via?", options: ["Rewards", "Labels", "Unsupervised", "Static data"], correct: 0 },
+    { question: "What is Q-value?", options: ["Expected reward", "Loss", "Policy", "State"], correct: 0 },
+    { question: "Exploration vs exploitation trade-off is about?", options: ["Try new actions / use best known", "Data size", "Model depth", "Learning rate"], correct: 0 },
+    { question: "What is a policy in RL?", options: ["Agent's strategy", "Reward function", "Environment", "State"], correct: 0 },
+    { question: "Which algorithm uses Bellman equation?", options: ["Q-learning", "Random search", "Linear regression", "K-means"], correct: 0 }
+  ] },
+  { id: 11, title: "Cloud AI", shortDesc: "AI with cloud.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxjnku2GlyJnaD2WalFf-PYzF47utWzNOPzg&s", videoId: "Lg1G0Td2iSE", quiz: [
+    { question: "Which cloud offers SageMaker?", options: ["AWS", "Azure", "GCP", "IBM"], correct: 0 },
+    { question: "Serverless AI inference can use?", options: ["Lambda", "EC2", "VM", "Bare Metal"], correct: 0 },
+    { question: "MLOps stands for?", options: ["Machine Learning Operations", "ML Optimization", "Model Language", "Multi-Layer"], correct: 0 },
+    { question: "What is cloud AI benefit?", options: ["Scalability", "No internet needed", "Manual updates", "Local only"], correct: 0 },
+    { question: "Which is a cloud AI API?", options: ["Amazon Rekognition", "MySQL", "Redis", "MongoDB"], correct: 0 }
+  ] },
+  { id: 12, title: "Generative AI", shortDesc: "Create content with AI.", img: "https://www.dataversity.net/wp-content/uploads/2025/09/2024-March_BH_generative_AI_SS-600x448-1.png", videoId: "mEsLeVHqJiw", quiz: [
+    { question: "What does GPT stand for?", options: ["Generative Pretrained Transformer", "General Processing Tech", "Graphical Plot Tool", "Gradient Tensor"], correct: 0 },
+    { question: "Which model generates images from text?", options: ["DALL-E", "BERT", "RoBERTa", "GPT-2"], correct: 0 },
+    { question: "Prompt engineering is used for?", options: ["Guiding LLM outputs", "Training data", "Data cleaning", "Model deployment"], correct: 0 },
+    { question: "What is a hallucination in GenAI?", options: ["False confident output", "Fast response", "Accurate answer", "Small model"], correct: 0 },
+    { question: "Which architecture powers ChatGPT?", options: ["Transformer", "CNN", "RNN", "LSTM"], correct: 0 }
+  ] },
+  { id: 13, title: "AI in Healthcare", shortDesc: "Medical AI applications.", img: "https://www.grantthornton.in/globalassets/1.-member-firms/india/assets/images/hero-banner/1440x658-ai-healthcare.jpg", videoId: "eJ2pHNqGvH8", quiz: [
+    { question: "AI can detect diseases from?", options: ["X-rays", "Spreadsheets", "Text", "Audio"], correct: 0 },
+    { question: "Which technique for analyzing MRI?", options: ["CNN", "RNN", "LSTM", "GAN"], correct: 0 },
+    { question: "Electronic Health Records benefit from?", options: ["NLP", "Robotics", "CV", "RL"], correct: 0 },
+    { question: "What is precision medicine?", options: ["Tailored treatments", "One-size-fits-all", "Surgery only", "No AI"], correct: 0 },
+    { question: "Which helps drug discovery?", options: ["Generative models", "Spreadsheets", "Manual testing", "Email"], correct: 0 }
+  ] },
+  { id: 14, title: "Cybersecurity AI", shortDesc: "Secure systems.", img: "https://imageio.forbes.com/specials-images/imageserve/685eddeb9f0c50744067bcc4/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds", videoId: "e-KwY9VoAGk", quiz: [
+    { question: "What is an intrusion detection system?", options: ["Monitor network attacks", "Encrypt files", "Backup data", "Antivirus"], correct: 0 },
+    { question: "Adversarial attacks manipulate?", options: ["Input data to fool model", "Model weights", "Training labels", "Hyperparams"], correct: 0 },
+    { question: "AI helps in phishing detection via?", options: ["Pattern recognition", "Compression", "Hashing", "Encoding"], correct: 0 },
+    { question: "What is zero-day attack?", options: ["Unknown vulnerability", "Known bug", "Password attack", "Malware"], correct: 0 },
+    { question: "Which AI technique detects anomalies?", options: ["Isolation Forest", "Linear regression", "KNN classification", "Decision tree"], correct: 0 }
+  ] },
+  { id: 15, title: "AI Product Management", shortDesc: "Build AI products.", img: "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/5103658/cover_image/retina_1708x683/1120_Rising_Demand_For_AI_Product_Managers_Zara__Newsletter___blog-df55877926631d48f3519ce083193663.png", videoId: "9mUlWjE6pNw", quiz: [
+    { question: "What is an MVP?", options: ["Minimum Viable Product", "Maximum Value Product", "Model Validation Process", "Machine Vision Protocol"], correct: 0 },
+    { question: "Which metric matters for AI products?", options: ["Model accuracy", "Lines of code", "Number of features", "UI colors"], correct: 0 },
+    { question: "What is a data flywheel?", options: ["More users → more data → better AI", "Data deletion", "Slow processing", "Manual labeling"], correct: 0 },
+    { question: "What is a confusion matrix?", options: ["Classification evaluation", "Data storage", "Network design", "Frontend tool"], correct: 0 },
+    { question: "What is an AI product manager responsible for?", options: ["Strategy & roadmap", "Only coding", "Only design", "Only sales"], correct: 0 }
+  ] }
+];
+
+function getYouTubeEmbed(videoId) {
+  return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+}
+
+function renderHomePage() {
+  const container = document.getElementById('mainContent');
+  container.innerHTML = `<div class="container"><h2>🚀 Explore Courses</h2><div class="courses" id="coursesGrid"></div></div>`;
+  const grid = document.getElementById('coursesGrid');
+  coursesData.forEach(course => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<img src="${course.img}" alt="${course.title}" loading="lazy"><div class="card-content"><h3>${course.title}</h3><p>${course.shortDesc}</p><button class="course-btn" data-id="${course.id}">📘 View Course Page</button></div>`;
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('.course-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      renderCoursePage(parseInt(btn.getAttribute('data-id')));
+      e.stopPropagation();
+    });
+  });
+}
+
+function renderCoursePage(courseId) {
+  const course = coursesData[courseId];
+  if (!course) return;
+  const longDesc = getLongDescription(course.title);
+  const container = document.getElementById('mainContent');
+  // Layout: Description FIRST (with title), then VIDEO (1-hour lecture style), then QUIZ
+  container.innerHTML = `
+    <div class="course-page">
+      <div class="course-page-header">
+        <h2>🎓 ${course.title}</h2>
+        <button class="back-home" id="backHomeBtn">← Back to Courses</button>
+      </div>
+      <div class="course-page-container">
+        <!-- SECTION 1: About Course (Detailed Description - First) -->
+        <div class="description-section">
+          <h1>📚 About This Course <span class="course-badge">⭐ Professional Certification</span></h1>
+          <p>${longDesc}</p>
+          <h3>🎯 What You'll Learn</h3>
+          <ul>
+            <li>✅ Core concepts and advanced techniques in ${course.title}</li>
+            <li>✅ Hands-on projects with real-world datasets and industry tools</li>
+            <li>✅ Best practices for model deployment and MLOps</li>
+            <li>✅ Interview preparation with mock tests and career guidance</li>
+            <li>✅ Certificate of completion recognized by top tech companies</li>
+          </ul>
+          <p>📌 <strong>Course Includes:</strong> 40+ hours of on-demand video, 20+ coding assignments, 5 major projects, downloadable resources, and lifetime access. Prerequisites: Basic programming knowledge (Python recommended). Enroll today and transform your career!</p>
+        </div>
+        
+        <!-- SECTION 2: Video Lecture (1 Hour Long Format) -->
+        <div class="video-section">
+          <h2>🎬 Video Lecture <span style="font-size: 0.9rem; background: #e2e8f0; padding: 4px 12px; border-radius: 30px; color: #0f172a;">Full Length: ~1 Hour</span></h2>
+          <div class="video-wrapper">
+            <iframe src="${getYouTubeEmbed(course.videoId)}" allowfullscreen></iframe>
+          </div>
+          <div class="video-duration">⏱️ Comprehensive lecture covering ${course.title} fundamentals to advanced concepts</div>
+        </div>
+        
+        <!-- SECTION 3: Final Quiz -->
+        <div class="quiz-section">
+          <h2>📝 Knowledge Assessment Quiz</h2>
+          <button class="start-quiz-btn" id="startQuizBtnCourse">🚀 Start Quiz</button>
+          <div id="quizAreaDynamic" class="quiz-questions"></div>
+          <div id="quizResultDisplay"></div>
+        </div>
+      </div>
+    </div>`;
+  
+  document.getElementById('backHomeBtn').addEventListener('click', () => renderHomePage());
+  
+  let userAnswers = new Array(course.quiz.length).fill(null);
+  let quizActive = false;
+  const startBtn = document.getElementById('startQuizBtnCourse');
+  const quizArea = document.getElementById('quizAreaDynamic');
+  const resultDiv = document.getElementById('quizResultDisplay');
+  
+  function renderQuizUI() {
+    let html = '';
+    course.quiz.forEach((q, idx) => {
+      html += `<div class="quiz-question-card"><p><strong>${idx+1}. ${q.question}</strong></p><div class="quiz-options-group" data-qidx="${idx}">`;
+      q.options.forEach((opt, optIdx) => { 
+        html += `<div class="quiz-option ${userAnswers[idx] === optIdx ? 'selected' : ''}" data-optidx="${optIdx}">${opt}</div>`; 
+      });
+      html += `</div></div>`;
+    });
+    html += `<button class="submit-quiz" id="finalSubmitBtn">✅ Submit Quiz & Get Score</button>`;
+    quizArea.innerHTML = html;
+    
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        const parentGroup = opt.closest('.quiz-options-group');
+        const qIdx = parseInt(parentGroup.getAttribute('data-qidx'));
+        const optIdx = parseInt(opt.getAttribute('data-optidx'));
+        userAnswers[qIdx] = optIdx;
+        renderQuizUI();
+      });
+    });
+    
+    document.getElementById('finalSubmitBtn').addEventListener('click', () => {
+      let score = 0;
+      for (let i = 0; i < course.quiz.length; i++) {
+        if (userAnswers[i] === course.quiz[i].correct) score++;
+      }
+      const total = course.quiz.length;
+      resultDiv.innerHTML = `<div class="quiz-result">🎉 Your Score: ${score} / ${total} (${Math.round(score/total*100)}%)<br>${score === total ? '🏆 Excellent! You\'ve mastered this course!' : '👍 Good attempt! Review the video lecture and try again.'}<br>💡 ${score >= 4 ? 'You\'re ready for the certification exam!' : 'Keep learning — you\'re making great progress!'}</div>`;
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+  
+  startBtn.addEventListener('click', () => { 
+    if (!quizActive) { 
+      quizActive = true; 
+      quizArea.style.display = 'block'; 
+      renderQuizUI(); 
+      startBtn.style.display = 'none'; 
+    } 
+  });
+}
+
+document.getElementById('homeLink').addEventListener('click', (e) => { e.preventDefault(); renderHomePage(); });
+document.getElementById('coursesLink').addEventListener('click', (e) => { e.preventDefault(); renderHomePage(); });
+renderHomePage();
+</script>
+</body>
+</html>
